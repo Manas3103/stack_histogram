@@ -1,0 +1,1 @@
+ls *.root | parallel -j 10 'root -l -q "PLOT_function.C(\"{}\")"'
