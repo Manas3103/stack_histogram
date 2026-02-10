@@ -1,20 +1,22 @@
+import ROOT
+
 # Input / Output directories
 INPUT_DIR = "../all_root_file"
 OUTPUT_DIR = "merged_branch_file_new"
 
 # Process groups
 PROCESS_GROUPS = {
-    "DY": [
-        "dy_10to50_hist_new.root",
-        "dy_m50_hist_new.root"
-    ],
+#    "DY": [
+#        "dy_10to50_hist_new.root",
+#        "dy_m50_hist_new.root"
+#    ],
     "tt+jets": [
         "ttbar_dilepton_hist_new.root",
         "ttbar_semilep_hist_new.root"
     ],
     "Xy": [
-        "zg_ntgc_hist_new.root",
-        "tgqb_hist_new.root",
+#        "zg_ntgc_hist_new.root",
+#        "tgqb_hist_new.root",
         "wg_10to100_hist_new.root"
     ],
     "VVV": [
@@ -24,18 +26,22 @@ PROCESS_GROUPS = {
         "zzz_hist_new.root"
     ],
     "t(t)X": [
-        "tth_non2b_hist_new.root",
+#        "tth_non2b_hist_new.root",
         "ttwh_hist_new.root",
         "ttww_hist_new.root",
-        "ttzh_hist_new.root",
-        "ttzz_hist_new.root",
-        "tttt_hist_new.root",
-        "thq_hist_new.root",
+#        "ttzh_hist_new.root",
+#        "ttzz_hist_new.root",
+#        "tttt_hist_new.root",
+#        "thq_hist_new.root",
         "tbarb_lmin_hist_new.root",
         "tbbar_lplus_hist_new.root",
-        "thw_hist_new.root"
+#        "thw_hist_new.root"
     ],
     "ZZ": [
+        "ggh_zz_4l_hist_new.root",
+        "vbfh_zz_4l_hist_new.root",
+        "wmh_zz_4l_hist_new.root",
+        "wph_zz_4l_hist_new.root",
         "zz_hist_new.root"
     ],
     "WZ": [
@@ -53,13 +59,83 @@ PROCESS_GROUPS = {
     ]
 }
 
+# Process groups
+PROCESS_GROUPS_FULL = {
+    "DY": [
+        "dy_10to50_hist_new.root",
+        "dy_m50_hist_new.root"
+    ],
+
+    "tt+jets": [
+        "ttbar_dilepton_hist_new.root",
+        "ttbar_semilep_hist_new.root"
+    ],
+
+    "Xy": [
+        "zg_ntgc_hist_new.root",
+        "tgqb_hist_new.root",
+        "wg_10to100_hist_new.root"
+    ],
+
+    "VVV": [
+        "www_hist_new.root",
+        "wwz_hist_new.root",
+        "wzz_hist_new.root",
+        "zzz_hist_new.root"
+    ],
+
+    "t(t)X": [
+        "tth_non2b_hist_new.root",
+        "ttwh_hist_new.root",
+        "ttww_hist_new.root",
+        "ttzh_hist_new.root",
+        "ttzz_hist_new.root",
+        "tttt_hist_new.root",
+        "thq_hist_new.root",
+        "tbarb_lmin_hist_new.root",
+        "tbbar_lplus_hist_new.root",
+        "thw_hist_new.root"
+    ],
+
+    "ZZ": [
+        "ggh_zz_4l_hist_new.root",
+        "gg_zz_2mu2tau_hist_new.root",
+        "gg_zz_2e2tau_hist_new.root",
+        "gg_zz_2e2mu_hist_new.root",
+        "gg_zz_4e_hist_new.root",
+        "gg_zz_4mu_hist_new.root",
+        "vbfh_zz_4l_hist_new.root",
+        "wmh_zz_4l_hist_new.root",
+        "wph_zz_4l_hist_new.root",
+        "zz_hist_new.root"
+    ],
+
+    "WZ": [
+        "wz_hist_new.root"
+    ],
+
+    "ttZ": [
+        "ttz_4to50_hist_new.root",
+        "ttz_50_hist_new.root"
+    ],
+
+    "tZq": [
+        "top_zq_hist_new.root"
+    ],
+
+    "data": [
+        "All_data_nodup_hist_noNorm.root"
+    ]
+}
+
+
 # Optional: manually specify histogram branches
 # Leave empty [] to auto-detect from reference file
 HISTOGRAM_BRANCHES = []
 
 # Plot output directory
 PLOT_OUTPUT_DIR = "merged_branch_file_new/plots"
-
+"""
 # MC stack order (controls draw order)
 MC_STACK_ORDER = [
     "DY", "tt+jets", "Xy", "VVV", "t(t)X", "ZZ", "WZ", "ttZ", "tZq"
@@ -77,4 +153,23 @@ COLOR_MAP = {
     "ttZ": 632,
     "tZq": 416,
 }
+"""
+
+
+COLOR_MAP = {
+    "tZq": ROOT.kRed - 7,
+    "ttZ": ROOT.kGreen - 7,
+    "WZ": ROOT.kAzure - 9,
+    "ZZ": ROOT.kOrange - 2,
+    "t(t)X": ROOT.kViolet - 7,
+    "VVV": ROOT.kPink - 3,
+    "Xy": ROOT.kYellow - 7,
+    "tt+jets": ROOT.kGreen + 1,
+    "DY": ROOT.kBlue - 6,
+}
+
+MC_STACK_ORDER = [
+    "DY", "tt+jets", "Xy", "VVV", "t(t)X",
+    "ZZ", "WZ", "ttZ", "tZq"
+]
 

@@ -10,8 +10,9 @@ def main():
 
 def main():
     print("\n--- Starting Histogram Merge Job ---")
-
-    merger = HistogramMerger()
+    
+    merger = HistogramMerger(partial_tag=True)
+   # merger = HistogramMerger()
     merged_files = merger.run()
 
     print("\n--- Generating Stack Plots ---")
