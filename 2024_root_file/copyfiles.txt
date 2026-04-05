@@ -1,0 +1,2 @@
+scp msahoo@cmslpc-el9.fnal.gov:/uscms/home/msahoo/nobackup/Project_tzq/CMSSW_13_3_3/src/single_top_analyser/normalized_hist/*.root .
+scp msahoo@cmslpc-el9.fnal.gov:/eos/uscms/store/user/msahoo/2024_processed/Data_files/Ploting_of_Data/All_data_nodup_hist_noNorm.root .

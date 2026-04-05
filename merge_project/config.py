@@ -1,7 +1,7 @@
 import ROOT
 
 # Input / Output directories
-INPUT_DIR = "../all_root_file"
+INPUT_DIR = "processed_root_file"
 OUTPUT_DIR = "merged_branch_file_new"
 
 # Process groups
@@ -11,13 +11,15 @@ PROCESS_GROUPS = {
 #        "dy_m50_hist_new.root"
 #    ],
     "tt+jets": [
-        "ttbar_dilepton_hist_new.root",
-        "ttbar_semilep_hist_new.root"
+        "ttbar_semilep_skimed_hist_new.root",
+        "ttbar_dilepton_part1_skimed_hist_new.root",
+        "ttbar_dilepton_part2_skimed_hist_new.root",
+        "ttbar_dilepton_part3_skimed_hist_new.root"
     ],
     "Xy": [
 #        "zg_ntgc_hist_new.root",
 #        "tgqb_hist_new.root",
-        "wg_10to100_hist_new.root"
+        "wg_1jet_skimed_hist_new.root"
     ],
     "VVV": [
         "www_hist_new.root",
@@ -42,10 +44,10 @@ PROCESS_GROUPS = {
         "vbfh_zz_4l_hist_new.root",
         "wmh_zz_4l_hist_new.root",
         "wph_zz_4l_hist_new.root",
-        "zz_hist_new.root"
+        "zz_4l_skimed_hist_new.root"
     ],
     "WZ": [
-        "wz_hist_new.root"
+        "wz_3lnu_skimed_hist_new.root"
     ],
     "ttZ": [
         "ttz_4to50_hist_new.root",
@@ -55,8 +57,15 @@ PROCESS_GROUPS = {
         "top_zq_hist_new.root"
     ],
     "data": [
-        "All_data_nodup_hist_noNorm.root"
+        "Era_C_merged_nodup_hist_noNorm.root",
+        "Era_D_merged_nodup_hist_noNorm.root",
+        "Era_E_merged_nodup_hist_noNorm.root",
+        "Era_F_merged_nodup_hist_noNorm.root",
+        "Era_G_merged_nodup_hist_noNorm.root",
+        "Era_H_merged_nodup_hist_noNorm.root",
+        "Era_I_merged_nodup_hist_noNorm.root"
     ]
+
 }
 
 # Process groups
@@ -124,7 +133,13 @@ PROCESS_GROUPS_FULL = {
     ],
 
     "data": [
-        "All_data_nodup_hist_noNorm.root"
+        "Era_C_merged_nodup_hist_noNorm.root"
+        "Era_D_merged_nodup_hist_noNorm.root"
+        "Era_E_merged_nodup_hist_noNorm.root"
+        "Era_F_merged_nodup_hist_noNorm.root"
+        "Era_G_merged_nodup_hist_noNorm.root"
+        "Era_H_merged_nodup_hist_noNorm.root"
+        "Era_I_merged_nodup_hist_noNorm.root"
     ]
 }
 

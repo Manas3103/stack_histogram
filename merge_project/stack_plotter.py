@@ -162,7 +162,7 @@ class StackPlotter:
         lumi.SetNDC()
         lumi.SetTextFont(42)
         lumi.SetTextSize(0.035)
-        lumi.DrawLatex(0.68, 0.92, "8 fb^{-1} (13.6 TeV)")
+        lumi.DrawLatex(0.68, 0.92, "108 fb^{-1} (13.6 TeV)")
 
         # =======================
         # Ratio panel
@@ -181,7 +181,7 @@ class StackPlotter:
         ratio.GetYaxis().SetTitleSize(0.12)
         ratio.GetYaxis().SetLabelSize(0.10)
         ratio.GetYaxis().SetTitleOffset(0.45)
-        ratio.GetYaxis().SetRangeUser(0.3, 1.75)
+        ratio.GetYaxis().SetRangeUser(0.5, 1.5)
 
         x_title = self.data_hist.GetXaxis().GetTitle()
         if x_title == "":
