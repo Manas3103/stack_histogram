@@ -135,11 +135,11 @@ PROCESS_GROUPS_FULL = {
     "data": [
         "Era_C_merged_nodup_hist_noNorm.root"
         "Era_D_merged_nodup_hist_noNorm.root"
-        "Era_E_merged_nodup_hist_noNorm.root"
-        "Era_F_merged_nodup_hist_noNorm.root"
-        "Era_G_merged_nodup_hist_noNorm.root"
-        "Era_H_merged_nodup_hist_noNorm.root"
-        "Era_I_merged_nodup_hist_noNorm.root"
+        #"Era_E_merged_nodup_hist_noNorm.root"
+        #"Era_F_merged_nodup_hist_noNorm.root"
+        #"Era_G_merged_nodup_hist_noNorm.root"
+        #"Era_H_merged_nodup_hist_noNorm.root"
+        #"Era_I_merged_nodup_hist_noNorm.root"
     ]
 }
 
