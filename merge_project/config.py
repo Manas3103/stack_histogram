@@ -7,63 +7,110 @@ OUTPUT_DIR = "merged_branch_file_new"
 # Process groups
 PROCESS_GROUPS = {
 #    "DY": [
-#        "dy_10to50_hist_new.root",
-#        "dy_m50_hist_new.root"
+#        "dy_10to50_hist.root",
+#        "dy_m50_hist.root"
 #    ],
     "tt+jets": [
-        "ttbar_semilep_skimed_hist_new.root",
-        "ttbar_dilepton_part1_skimed_hist_new.root",
-        "ttbar_dilepton_part2_skimed_hist_new.root",
-        "ttbar_dilepton_part3_skimed_hist_new.root"
+        "ttbar_semilep_part1_skimed_hist.root",
+        "ttbar_semilep_part2_skimed_hist.root",
+        "ttbar_semilep_part3_skimed_hist.root",
+        "ttbar_semilep_part4_skimed_hist.root",
+        "ttbar_semilep_part5_skimed_hist.root",
+        "ttbar_semilep_part6_skimed_hist.root",
+        "ttbar_semilep_part7_skimed_hist.root",
+        "ttbar_semilep_part8_skimed_hist.root",
+
+        # dilepton parts
+        "ttbar_dilepton_part1_skimed_hist.root",
+        "ttbar_dilepton_part2_skimed_hist.root",
+        "ttbar_dilepton_part3_skimed_hist.root",
+        "ttbar_dilepton_part4_skimed_hist.root",
+        "ttbar_dilepton_part5_skimed_hist.root",
+        "ttbar_dilepton_part6_skimed_hist.root",
+        "ttbar_dilepton_part7_skimed_hist.root",
+        "ttbar_dilepton_part8_skimed_hist.root",
     ],
     "Xy": [
-#        "zg_ntgc_hist_new.root",
-#        "tgqb_hist_new.root",
-        "wg_1jet_skimed_hist_new.root"
+#        "zg_ntgc_hist.root",
+#        "tgqb_hist.root",
+        "wg_1jet_part1_skimed_hist.root",
+        "wg_1jet_part2_skimed_hist.root",
+        "wg_1jet_part3_skimed_hist.root",
+        "wg_1jet_part4_skimed_hist.root",
+        "wg_1jet_part5_skimed_hist.root",
+        "wg_1jet_part6_skimed_hist.root",
+        "wg_1jet_part7_skimed_hist.root",
+        "wg_1jet_part8_skimed_hist.root",
+        "wg_1jet_part9_skimed_hist.root",
+        "wg_1jet_part10_skimed_hist.root",
+        "wg_1jet_part11_skimed_hist.root",
+        "wg_1jet_part12_skimed_hist.root",
+        "wg_1jet_part13_skimed_hist.root",
+        "wg_1jet_part14_skimed_hist.root",
+        "wg_1jet_part15_skimed_hist.root",
+        "wg_1jet_part16_skimed_hist.root",
+        "wg_1jet_part17_skimed_hist.root",
+        "wg_1jet_part18_skimed_hist.root",
+        "wg_1jet_part19_skimed_hist.root",
+        "wg_1jet_part20_skimed_hist.root",
     ],
     "VVV": [
-        "www_hist_new.root",
-        "wwz_hist_new.root",
-        "wzz_hist_new.root",
-        "zzz_hist_new.root"
+        "www_hist.root",
+        "wwz_hist.root",
+        "wzz_hist.root",
+        "zzz_hist.root"
     ],
     "t(t)X": [
-#        "tth_non2b_hist_new.root",
-        "ttwh_hist_new.root",
-        "ttww_hist_new.root",
-#        "ttzh_hist_new.root",
-#        "ttzz_hist_new.root",
-#        "tttt_hist_new.root",
-#        "thq_hist_new.root",
-        "tbarb_lmin_hist_new.root",
-        "tbbar_lplus_hist_new.root",
-#        "thw_hist_new.root"
+#        "tth_non2b_hist.root",
+        "ttwh_hist.root",
+        "ttww_hist.root",
+#        "ttzh_hist.root",
+#        "ttzz_hist.root",
+#        "tttt_hist.root",
+#        "thq_hist.root",
+        "tbarb_lmin_hist.root",
+        "tbbar_lplus_hist.root",
+#        "thw_hist.root"
     ],
     "ZZ": [
-        "ggh_zz_4l_hist_new.root",
-        "vbfh_zz_4l_hist_new.root",
-        "wmh_zz_4l_hist_new.root",
-        "wph_zz_4l_hist_new.root",
-        "zz_4l_skimed_hist_new.root"
+        "ggh_zz_4l_hist.root",
+        "vbfh_zz_4l_hist.root",
+        "wmh_zz_4l_hist.root",
+        "wph_zz_4l_hist.root",
+        "zz_4l_part1_skimed_hist.root",
+        "zz_4l_part2_skimed_hist.root",
+        "zz_4l_part3_skimed_hist.root",
+        "zz_4l_part4_skimed_hist.root",
+        "zz_4l_part5_skimed_hist.root",
+        "zz_4l_part6_skimed_hist.root",
+        "zz_4l_part7_skimed_hist.root",
+        "zz_4l_part8_skimed_hist.root",
     ],
     "WZ": [
-        "wz_3lnu_skimed_hist_new.root"
+        "wz_3lnu_part1_skimed_hist.root",
+        "wz_3lnu_part2_skimed_hist.root",
+        "wz_3lnu_part3_skimed_hist.root",
+        "wz_3lnu_part4_skimed_hist.root",
+        "wz_3lnu_part5_skimed_hist.root",
+        "wz_3lnu_part6_skimed_hist.root",
+        "wz_3lnu_part7_skimed_hist.root",
+        "wz_3lnu_part8_skimed_hist.root",
     ],
     "ttZ": [
-        "ttz_4to50_hist_new.root",
-        "ttz_50_hist_new.root"
+        "ttz_4to50_hist.root",
+        "ttz_50_hist.root"
     ],
     "tZq": [
-        "top_zq_hist_new.root"
+        "top_zq_hist.root"
     ],
     "data": [
-        "Era_C_merged_nodup_hist_noNorm.root",
-        "Era_D_merged_nodup_hist_noNorm.root",
-        "Era_E_merged_nodup_hist_noNorm.root",
-        "Era_F_merged_nodup_hist_noNorm.root",
-        "Era_G_merged_nodup_hist_noNorm.root",
-        "Era_H_merged_nodup_hist_noNorm.root",
-        "Era_I_merged_nodup_hist_noNorm.root"
+        "Era_C_merged_nodup_hist.root",
+        "Era_D_merged_nodup_hist.root",
+        "Era_E_merged_nodup_hist.root",
+#        "Era_F_merged_nodup_hist.root",
+#        "Era_G_merged_nodup_hist.root",
+        "Era_H_merged_nodup_hist.root",
+        "Era_I_merged_nodup_hist.root"
     ]
 
 }
@@ -71,75 +118,75 @@ PROCESS_GROUPS = {
 # Process groups
 PROCESS_GROUPS_FULL = {
     "DY": [
-        "dy_10to50_hist_new.root",
-        "dy_m50_hist_new.root"
+        "dy_10to50_hist.root",
+        "dy_m50_hist.root"
     ],
 
     "tt+jets": [
-        "ttbar_dilepton_hist_new.root",
-        "ttbar_semilep_hist_new.root"
+        "ttbar_dilepton_hist.root",
+        "ttbar_semilep_hist.root"
     ],
 
     "Xy": [
-        "zg_ntgc_hist_new.root",
-        "tgqb_hist_new.root",
-        "wg_10to100_hist_new.root"
+        "zg_ntgc_hist.root",
+        "tgqb_hist.root",
+        "wg_10to100_hist.root"
     ],
 
     "VVV": [
-        "www_hist_new.root",
-        "wwz_hist_new.root",
-        "wzz_hist_new.root",
-        "zzz_hist_new.root"
+        "www_hist.root",
+        "wwz_hist.root",
+        "wzz_hist.root",
+        "zzz_hist.root"
     ],
 
     "t(t)X": [
-        "tth_non2b_hist_new.root",
-        "ttwh_hist_new.root",
-        "ttww_hist_new.root",
-        "ttzh_hist_new.root",
-        "ttzz_hist_new.root",
-        "tttt_hist_new.root",
-        "thq_hist_new.root",
-        "tbarb_lmin_hist_new.root",
-        "tbbar_lplus_hist_new.root",
-        "thw_hist_new.root"
+        "tth_non2b_hist.root",
+        "ttwh_hist.root",
+        "ttww_hist.root",
+        "ttzh_hist.root",
+        "ttzz_hist.root",
+        "tttt_hist.root",
+        "thq_hist.root",
+        "tbarb_lmin_hist.root",
+        "tbbar_lplus_hist.root",
+        "thw_hist.root"
     ],
 
     "ZZ": [
-        "ggh_zz_4l_hist_new.root",
-        "gg_zz_2mu2tau_hist_new.root",
-        "gg_zz_2e2tau_hist_new.root",
-        "gg_zz_2e2mu_hist_new.root",
-        "gg_zz_4e_hist_new.root",
-        "gg_zz_4mu_hist_new.root",
-        "vbfh_zz_4l_hist_new.root",
-        "wmh_zz_4l_hist_new.root",
-        "wph_zz_4l_hist_new.root",
-        "zz_hist_new.root"
+        "ggh_zz_4l_hist.root",
+        "gg_zz_2mu2tau_hist.root",
+        "gg_zz_2e2tau_hist.root",
+        "gg_zz_2e2mu_hist.root",
+        "gg_zz_4e_hist.root",
+        "gg_zz_4mu_hist.root",
+        "vbfh_zz_4l_hist.root",
+        "wmh_zz_4l_hist.root",
+        "wph_zz_4l_hist.root",
+        "zz_hist.root"
     ],
 
     "WZ": [
-        "wz_hist_new.root"
+        "wz_hist.root"
     ],
 
     "ttZ": [
-        "ttz_4to50_hist_new.root",
-        "ttz_50_hist_new.root"
+        "ttz_4to50_hist.root",
+        "ttz_50_hist.root"
     ],
 
     "tZq": [
-        "top_zq_hist_new.root"
+        "top_zq_hist.root"
     ],
 
     "data": [
-        "Era_C_merged_nodup_hist_noNorm.root"
-        "Era_D_merged_nodup_hist_noNorm.root"
-        #"Era_E_merged_nodup_hist_noNorm.root"
-        #"Era_F_merged_nodup_hist_noNorm.root"
-        #"Era_G_merged_nodup_hist_noNorm.root"
-        #"Era_H_merged_nodup_hist_noNorm.root"
-        #"Era_I_merged_nodup_hist_noNorm.root"
+        "Era_C_merged_nodup_hist.root"
+        "Era_D_merged_nodup_hist.root"
+        #"Era_E_merged_nodup_hist.root"
+        #"Era_F_merged_nodup_hist.root"
+        #"Era_G_merged_nodup_hist.root"
+        #"Era_H_merged_nodup_hist.root"
+        #"Era_I_merged_nodup_hist.root"
     ]
 }
 
