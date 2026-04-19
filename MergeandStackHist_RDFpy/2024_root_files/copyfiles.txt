@@ -1,0 +1,1 @@
+scp msahoo@cmslpc-el9.fnal.gov:/eos/uscms/store/user/msahoo/2024_Analysed_hist/*.root .

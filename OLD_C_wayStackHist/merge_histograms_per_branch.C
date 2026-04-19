@@ -79,7 +79,7 @@ void merge_histograms_per_branch() {
         {"tZq", {"tzq_file_hist_new.root"}},
         {"data", {"All_merged_file_hist_noNorm.root"}}
     };
-*/
+
 std::vector<ProcessGroup> groups = {
     {"DY", {
         "dy_10to50_hist_new.root",
@@ -137,8 +137,49 @@ std::vector<ProcessGroup> groups = {
     {"data", {
         "All_data_nodup_hist_noNorm.root"
     }}
+};*/
+std::vector<ProcessGroup> groups = {
+    {"tt+jets", {
+        "ttbar_dilepton_part1_skimed_hist_new.root",
+        "ttbar_dilepton_part2_skimed_hist_new.root",
+        "ttbar_dilepton_part3_skimed_hist_new.root",
+        "ttbar_semilep_skimed_hist_new.root"
+    }},
+    {"VVV", {
+        "www_hist_new.root",
+        "wwz_hist_new.root",
+        "wzz_hist_new.root",
+        "zzz_hist_new.root"
+    }},
+    {"t(t)X", {
+        "ttwh_hist_new.root",
+        "ttww_hist_new.root",
+        "ttwz_hist_new.root",   // added (exists in your files)
+        "tbarb_lmin_hist_new.root",
+        "tbbar_lplus_hist_new.root"
+        // removed: tth_non2b, ttzh, ttzz, tttt, thq, thw (not present)
+    }},
+    {"ZZ", {
+        "ggh_zz_4l_hist_new.root",
+        "vbfh_zz_4l_hist_new.root",
+        "wmh_zz_4l_hist_new.root",
+        "wph_zz_4l_hist_new.root"
+        // removed all gg_zz_* and zz_hist_new.root (not present)
+    }},
+    {"WZ", {
+        "wz_3lnu_skimed_hist_new.root"
+    }},
+    {"ttZ", {
+        "ttz_4to50_hist_new.root",
+        "ttz_50_hist_new.root"
+    }},
+    {"tZq", {
+        "top_zq_hist_new.root"
+    }},
+    {"data", {
+        "All_data_nodup_hist_noNorm.root"
+    }}
 };
-
     // Ensure output directory exists
     std::filesystem::create_directories(output_dir);
 
