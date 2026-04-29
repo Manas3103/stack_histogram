@@ -117,13 +117,14 @@ PROCESS_GROUPS = {
         "top_zq_hist.root"
     ],
     "data": [
-#        "Era_C_merged_nodup_hist.root",
-#        "Era_D_merged_nodup_hist.root",
-#        "Era_E_merged_nodup_hist.root",
-#        "Era_F_merged_nodup_hist.root",
-#        "Era_G_merged_nodup_hist.root",
+        "Era_C_merged_nodup_py_hist.root",
+        "Era_D_merged_nodup_py_hist.root",
+        "Era_E_merged_nodup_py_hist.root",
+        "Era_F_merged_nodup_py_hist.root",
+#       "Era_G_merged_nodup_hist.root",
+        "Era_G_merged_nodup_py_hist.root",
         "Era_H_merged_nodup_hist.root",
-#        "Era_I_merged_nodup_hist.root"
+        "Era_I_merged_nodup_py_hist.root"
     ]
 
 }

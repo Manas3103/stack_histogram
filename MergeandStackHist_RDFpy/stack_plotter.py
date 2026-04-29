@@ -9,8 +9,14 @@ class StackPlotter:
         self.data_hist = None
         self.mc_hists = []
 
+        # Keep ROOT objects alive (CRITICAL in PyROOT)
+        self._root_objs = []
+
         os.makedirs(PLOT_OUTPUT_DIR, exist_ok=True)
 
+    # ==========================================================
+    # Load histograms safely
+    # ==========================================================
     def load_histograms(self):
         f = ROOT.TFile.Open(self.root_file)
 
@@ -22,10 +28,10 @@ class StackPlotter:
         for key in f.GetListOfKeys():
             obj = key.ReadObj()
 
-            if not isinstance(obj, ROOT.TH1):
+            if not obj.InheritsFrom("TH1"):
                 continue
 
-            hist = obj.Clone()
+            hist = obj.Clone(obj.GetName() + "_clone")
             hist.SetDirectory(0)
 
             name = hist.GetName()
@@ -33,14 +39,13 @@ class StackPlotter:
 
             print("  Found:", name)
 
-            # Detect DATA robustly
+            # Detect DATA
             if lname == "data" or "data" in lname:
                 self.data_hist = hist
                 self.data_hist.SetMarkerStyle(20)
                 self.data_hist.SetMarkerSize(1.2)
                 self.data_hist.SetLineColor(ROOT.kBlack)
                 self.data_hist.SetLineWidth(2)
-
             else:
                 self.mc_hists.append(hist)
 
@@ -52,6 +57,9 @@ class StackPlotter:
         if len(self.mc_hists) == 0:
             raise RuntimeError("Missing MC histograms")
 
+    # ==========================================================
+    # Style MC
+    # ==========================================================
     def style_mc(self):
         for hist in self.mc_hists:
             for proc, color in COLOR_MAP.items():
@@ -60,6 +68,9 @@ class StackPlotter:
                     hist.SetLineColor(ROOT.kBlack)
                     hist.SetLineWidth(1)
 
+    # ==========================================================
+    # Order MC
+    # ==========================================================
     def order_mc(self):
         ordered = []
         for proc in MC_STACK_ORDER:
@@ -70,19 +81,47 @@ class StackPlotter:
         if ordered:
             self.mc_hists = ordered
 
+    # ==========================================================
+    # Build MC sum safely
+    # ==========================================================
     def build_stack_sum(self):
         mc_sum = self.mc_hists[0].Clone("mc_sum")
         mc_sum.Reset()
+        mc_sum.SetDirectory(0)
 
         for h in self.mc_hists:
             mc_sum.Add(h)
 
         return mc_sum
 
+    # ==========================================================
+    # Safe ratio division
+    # ==========================================================
+    def safe_ratio(self, num, den):
+        ratio = num.Clone("ratio")
+        ratio.SetDirectory(0)
+
+        for i in range(1, ratio.GetNbinsX() + 1):
+            d = den.GetBinContent(i)
+            n = num.GetBinContent(i)
+
+            if d > 0:
+                ratio.SetBinContent(i, n / d)
+                ratio.SetBinError(i, num.GetBinError(i) / d)
+            else:
+                ratio.SetBinContent(i, 0)
+                ratio.SetBinError(i, 0)
+
+        return ratio
+
+    # ==========================================================
+    # Draw everything safely
+    # ==========================================================
     def draw(self):
         ROOT.gStyle.SetOptStat(0)
 
         canvas = ROOT.TCanvas("c", "", 900, 850)
+        self._root_objs.append(canvas)
 
         upper = ROOT.TPad("upper", "", 0, 0.30, 1, 1)
         lower = ROOT.TPad("lower", "", 0, 0.05, 1, 0.30)
@@ -94,21 +133,26 @@ class StackPlotter:
         upper.Draw()
         lower.Draw()
 
-        # =======================
-        # Upper pad (stack)
-        # =======================
+        self._root_objs.extend([upper, lower])
+
+        # =========================
+        # Upper Pad
+        # =========================
         upper.cd()
 
         stack = ROOT.THStack("stack", "")
+        self._root_objs.append(stack)
+
         for h in self.mc_hists:
             stack.Add(h)
 
         stack.Draw("HIST")
+        stack.GetStack().Last()  # FORCE BUILD
 
         mc_sum = self.build_stack_sum()
+        self._root_objs.append(mc_sum)
 
-        # Set Y max = stack max × 1.40
-        max_val = max(stack.GetMaximum(), self.data_hist.GetMaximum()) * 1.40
+        max_val = max(mc_sum.GetMaximum(), self.data_hist.GetMaximum()) * 1.40
         stack.SetMaximum(max_val)
         stack.SetMinimum(0)
 
@@ -117,23 +161,24 @@ class StackPlotter:
         stack.GetYaxis().SetLabelSize(0.045)
         stack.GetXaxis().SetLabelSize(0)
 
-        # MC stat uncertainty band
+        # Uncertainty band
         unc_band = mc_sum.Clone("unc_band")
+        unc_band.SetDirectory(0)
         unc_band.SetFillColor(ROOT.kGray + 2)
         unc_band.SetFillStyle(3004)
         unc_band.SetMarkerSize(0)
         unc_band.Draw("E2 SAME")
+        self._root_objs.append(unc_band)
 
-        # Draw Data
         self.data_hist.Draw("EP SAME")
 
-        # =======================
+        # =========================
         # Legend
-        # =======================
-        legend = ROOT.TLegend(0.65, 0.65, 0.88, 0.85)  # LOWER + WIDER
+        # =========================
+        legend = ROOT.TLegend(0.65, 0.65, 0.88, 0.85)
         legend.SetBorderSize(0)
-        legend.SetTextSize(0.028)  # SMALLER TEXT
-        legend.SetNColumns(2)      # TWO COLUMNS (TWO ROWS EFFECT)
+        legend.SetTextSize(0.028)
+        legend.SetNColumns(2)
 
         legend.AddEntry(self.data_hist, "Data", "lep")
 
@@ -142,36 +187,45 @@ class StackPlotter:
 
         legend.AddEntry(unc_band, "MC stat unc.", "f")
         legend.Draw()
+        self._root_objs.append(legend)
+        # =======================
+        # CMS + Lumi Text (VISIBLE FIXED VERSION)
+        # =======================
+        upper.cd()
 
-        # =======================
-        # CMS Text
-        # =======================
+        # CMS
         cms = ROOT.TLatex()
         cms.SetNDC()
         cms.SetTextFont(61)
-        cms.SetTextSize(0.04)
-        cms.DrawLatex(0.14, 0.92, "CMS")
+        cms.SetTextSize(0.055)
+        cms.DrawLatex(0.18, 0.92, "CMS")
 
+        # Work in Progress
         prelim = ROOT.TLatex()
         prelim.SetNDC()
         prelim.SetTextFont(52)
-        prelim.SetTextSize(0.035)
-        prelim.DrawLatex(0.22, 0.92, "Work in Progress")
+        prelim.SetTextSize(0.040)
+        prelim.DrawLatex(0.27, 0.92, "Work in Progress")
 
+        # Luminosity (right aligned)
         lumi = ROOT.TLatex()
         lumi.SetNDC()
         lumi.SetTextFont(42)
-        lumi.SetTextSize(0.035)
-        lumi.DrawLatex(0.68, 0.92, "5.49 fb^{-1} (13.6 TeV)")
+        lumi.SetTextSize(0.040)
+        lumi.SetTextAlign(31)  # right align
+        lumi.DrawLatex(0.90, 0.92, "110 fb^{-1} (13.6 TeV)")
 
-        # =======================
-        # Ratio panel
-        # =======================
+        # Keep alive (VERY IMPORTANT in PyROOT)
+        self._root_objs.extend([cms, prelim, lumi])
+
+
+
+        # =========================
+        # Ratio Panel
+        # =========================
         lower.cd()
 
-        ratio = self.data_hist.Clone("ratio")
-        ratio.Divide(mc_sum)
-
+        ratio = self.safe_ratio(self.data_hist, mc_sum)
         ratio.SetMarkerStyle(20)
         ratio.SetMarkerSize(1.1)
         ratio.SetLineColor(ROOT.kBlack)
@@ -181,7 +235,7 @@ class StackPlotter:
         ratio.GetYaxis().SetTitleSize(0.12)
         ratio.GetYaxis().SetLabelSize(0.10)
         ratio.GetYaxis().SetTitleOffset(0.45)
-        ratio.GetYaxis().SetRangeUser(0.0, 2.0)
+        ratio.GetYaxis().SetRangeUser(0.5, 1.5)
 
         x_title = self.data_hist.GetXaxis().GetTitle()
         if x_title == "":
@@ -192,11 +246,15 @@ class StackPlotter:
         ratio.GetXaxis().SetLabelSize(0.10)
 
         ratio.Draw("EP")
+        self._root_objs.append(ratio)
 
-        # MC uncertainty ratio band
-        unc_ratio = unc_band.Clone()
-        unc_ratio.Divide(mc_sum)
+        # Ratio uncertainty band
+        unc_ratio = self.safe_ratio(unc_band, mc_sum)
+        unc_ratio.SetFillColor(ROOT.kGray + 2)
+        unc_ratio.SetFillStyle(3004)
+        unc_ratio.SetMarkerSize(0)
         unc_ratio.Draw("E2 SAME")
+        self._root_objs.append(unc_ratio)
 
         # Unity line
         line = ROOT.TLine(
@@ -207,25 +265,20 @@ class StackPlotter:
         )
         line.SetLineStyle(2)
         line.Draw("SAME")
+        self._root_objs.append(line)
 
-        bottom_title = ROOT.TLatex()
-        bottom_title.SetNDC()
-        bottom_title.SetTextFont(42)
-        bottom_title.SetTextSize(0.032)
-        bottom_title.SetTextAlign(22)  # Center alignment
-        #bottom_title.DrawLatex(0.50, 0.02, os.path.basename(self.root_file).replace(".root", "manas"))
-
-
-        # =======================
-        # Save Output
-        # =======================
+        # =========================
+        # Save
+        # =========================
         base = os.path.basename(self.root_file).replace(".root", "")
         out_png = os.path.join(PLOT_OUTPUT_DIR, base + ".png")
 
         canvas.SaveAs(out_png)
         print("Saved →", out_png)
 
+    # ==========================================================
     def run(self):
+        ROOT.gROOT.SetBatch(True)  # safer if not interactive
         ROOT.gStyle.SetOptTitle(0)
         ROOT.gStyle.SetOptStat(0)
 
@@ -233,4 +286,3 @@ class StackPlotter:
         self.style_mc()
         self.order_mc()
         self.draw()
-
