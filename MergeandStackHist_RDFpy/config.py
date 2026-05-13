@@ -7,9 +7,35 @@ OUTPUT_DIR = "merged_branch_file_new"
 # Process groups
 PROCESS_GROUPS = {
     "DY": [
-        "DYto_2E2Jet_skimed_hist.root",
-        "DYto_2Mu2Jet_skimed_hist.root",
-        "DYto_2Tau2Jet_skimed_hist.root",
+        "DYto_2E2Jet_part10_skimed_hist.root",
+        "DYto_2E2Jet_part1_skimed_hist.root",
+        "DYto_2E2Jet_part2_skimed_hist.root",
+        "DYto_2E2Jet_part3_skimed_hist.root",
+        "DYto_2E2Jet_part4_skimed_hist.root",
+        "DYto_2E2Jet_part5_skimed_hist.root",
+        "DYto_2E2Jet_part6_skimed_hist.root",
+        "DYto_2E2Jet_part7_skimed_hist.root",
+        "DYto_2E2Jet_part8_skimed_hist.root",
+        "DYto_2E2Jet_part9_skimed_hist.root",
+        "DYto_2Mu2Jet_part1_skimed_hist.root",
+        "DYto_2Mu2Jet_part2_skimed_hist.root",
+        "DYto_2Mu2Jet_part3_skimed_hist.root",
+        "DYto_2Mu2Jet_part4_skimed_hist.root",
+        "DYto_2Mu2Jet_part5_skimed_hist.root",
+        "DYto_2Mu2Jet_part6_skimed_hist.root",
+        "DYto_2Mu2Jet_part7_skimed_hist.root",
+        "DYto_2Mu2Jet_part8_skimed_hist.root",
+        "DYto_2Mu2Jet_part9_skimed_hist.root",
+        "DYto_2Tau2Jet_part10_skimed_hist.root",
+        "DYto_2Tau2Jet_part1_skimed_hist.root",
+        "DYto_2Tau2Jet_part2_skimed_hist.root",
+        "DYto_2Tau2Jet_part3_skimed_hist.root",
+        "DYto_2Tau2Jet_part4_skimed_hist.root",
+        "DYto_2Tau2Jet_part5_skimed_hist.root",
+        "DYto_2Tau2Jet_part6_skimed_hist.root",
+        "DYto_2Tau2Jet_part7_skimed_hist.root",
+        "DYto_2Tau2Jet_part8_skimed_hist.root",
+        "DYto_2Tau2Jet_part9_skimed_hist.root",
         "DYto2Tau-2Jets_M2L10-50_hist.root",
         "DYto2Mu-2Jets_M2L-10to50_hist.root",
         "DYto2E-2Jets_M2L-10to50_hist.root"
@@ -117,14 +143,14 @@ PROCESS_GROUPS = {
         "top_zq_hist.root"
     ],
     "data": [
-        "Era_C_merged_nodup_py_hist.root",
-        "Era_D_merged_nodup_py_hist.root",
-        "Era_E_merged_nodup_py_hist.root",
-        "Era_F_merged_nodup_py_hist.root",
+#        "Era_C_merged_nodup_py_hist.root",
+#        "Era_D_merged_nodup_py_hist.root",
+#        "Era_E_merged_nodup_py_hist.root",
+#        "Era_F_merged_nodup_py_hist.root",
 #       "Era_G_merged_nodup_hist.root",
         "Era_G_merged_nodup_py_hist.root",
-        "Era_H_merged_nodup_hist.root",
-        "Era_I_merged_nodup_py_hist.root"
+#        "Era_H_merged_nodup_hist.root",
+#        "Era_I_merged_nodup_py_hist.root"
     ]
 
 }
