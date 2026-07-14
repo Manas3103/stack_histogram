@@ -94,7 +94,16 @@ PROCESS_GROUPS = {
     "t(t)X": [
         "tbarWplus_2l2nu_hist.root",
         "tWminus_2l2nu_hist.root",
-#        "tth_non2b_hist.root",
+        "TTH-HtoNon2B_part1_skimed_hist.root",
+        "TTH-HtoNon2B_part2_skimed_hist.root",
+        "TTH-HtoNon2B_part3_skimed_hist.root",
+        "TTH-HtoNon2B_part4_skimed_hist.root",
+        "TTH-HtoNon2B_part5_skimed_hist.root",
+        "TTH-HtoNon2B_part6_skimed_hist.root",
+        "TTH-HtoNon2B_part7_skimed_hist.root",
+        "TTH-HtoNon2B_part8_skimed_hist.root",
+        "TTH-HtoNon2B_part9_skimed_hist.root",
+        "TTH-HtoNon2B_part10_skimed_hist.root",
         "ttwh_hist.root",
         "ttww_hist.root",
 #        "ttzh_hist.root",
@@ -143,14 +152,13 @@ PROCESS_GROUPS = {
         "top_zq_hist.root"
     ],
     "data": [
-#        "Era_C_merged_nodup_py_hist.root",
-#        "Era_D_merged_nodup_py_hist.root",
-#        "Era_E_merged_nodup_py_hist.root",
-#        "Era_F_merged_nodup_py_hist.root",
-#       "Era_G_merged_nodup_hist.root",
+        "Era_C_merged_nodup_py_hist.root",
+        "Era_D_merged_nodup_py_hist.root",
+        "Era_E_merged_nodup_py_hist.root",
+        "Era_F_merged_nodup_py_hist.root",
         "Era_G_merged_nodup_py_hist.root",
-#        "Era_H_merged_nodup_hist.root",
-#        "Era_I_merged_nodup_py_hist.root"
+        "Era_H_merged_nodup_py_hist.root",
+        "Era_I_merged_nodup_py_hist.root"
     ]
 
 }

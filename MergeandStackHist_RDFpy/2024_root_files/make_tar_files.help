@@ -1,0 +1,2 @@
+#first check and delete the previous tar file then create another tar file with command 
+tar -czvf hist_files.tar.gz *.root
