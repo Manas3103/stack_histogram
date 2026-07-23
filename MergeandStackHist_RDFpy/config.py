@@ -36,7 +36,7 @@ PROCESS_GROUPS = {
         "DYto_2Tau2Jet_part7_skimed_hist.root",
         "DYto_2Tau2Jet_part8_skimed_hist.root",
         "DYto_2Tau2Jet_part9_skimed_hist.root",
-        "DYto2Tau-2Jets_M2L10-50_hist.root",
+        #"DYto2Tau-2Jets_M2L10-50_hist.root",
         "DYto2Mu-2Jets_M2L-10to50_hist.root",
         "DYto2E-2Jets_M2L-10to50_hist.root"
 
@@ -104,11 +104,11 @@ PROCESS_GROUPS = {
         "TTH-HtoNon2B_part8_skimed_hist.root",
         "TTH-HtoNon2B_part9_skimed_hist.root",
         "TTH-HtoNon2B_part10_skimed_hist.root",
-        "ttwh_hist.root",
+        #"ttwh_hist.root",
         "ttww_hist.root",
 #        "ttzh_hist.root",
         "ttzz_hist.root",
-        "tttt_hist.root",
+       # "tttt_hist.root",
 #        "thq_hist.root",
         "tbarb_lmin_hist.root",
         "tbbar_lplus_hist.root",
