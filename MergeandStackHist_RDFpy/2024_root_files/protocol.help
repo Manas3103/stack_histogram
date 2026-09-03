@@ -1,2 +1,0 @@
-first delete the previous tar file
-tar -czvf hist_files.tar.gz *.root

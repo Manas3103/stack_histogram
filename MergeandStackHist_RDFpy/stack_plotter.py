@@ -1,6 +1,6 @@
 import ROOT
 import os
-from config import COLOR_MAP, MC_STACK_ORDER, PLOT_OUTPUT_DIR
+from config_modified import COLOR_MAP, MC_STACK_ORDER, PLOT_OUTPUT_DIR
 
 
 class StackPlotter:
@@ -272,6 +272,7 @@ class StackPlotter:
         # =========================
         base = os.path.basename(self.root_file).replace(".root", "")
         out_png = os.path.join(PLOT_OUTPUT_DIR, base + ".png")
+        # out_png = os.path.join(PLOT_OUTPUT_DIR, base + ".pdf")
 
         canvas.SaveAs(out_png)
         print("Saved →", out_png)

@@ -36,7 +36,7 @@ PROCESS_GROUPS = {
         "DYto_2Tau2Jet_part7_skimed_hist.root",
         "DYto_2Tau2Jet_part8_skimed_hist.root",
         "DYto_2Tau2Jet_part9_skimed_hist.root",
-        "DYto2Tau-2Jets_M2L10-50_hist.root",
+        # "DYto2Tau-2Jets_M2L10-50_hist.root",
         "DYto2Mu-2Jets_M2L-10to50_hist.root",
         "DYto2E-2Jets_M2L-10to50_hist.root"
 
