@@ -1,2 +1,4 @@
+#!/bin/sh
+rm *.root hist_files.tar.gz
 scp msahoo@cmslpc-el9.fnal.gov:/eos/uscms/store/user/msahoo/2024_Analysed_hist/*gz .
 tar -xzvf hist_files.tar.gz

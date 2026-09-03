@@ -4,7 +4,8 @@ import json
 import os
 
 # Find all *_Yield.root files
-root_files = sorted(glob.glob("*_Yield.root"))
+# root_files = sorted(glob.glob("*_Yield.root"))
+root_files = sorted(glob.glob("yield.root"))
 print(root_files)
 if not root_files:
     print("No *_Yield.root files found.")
