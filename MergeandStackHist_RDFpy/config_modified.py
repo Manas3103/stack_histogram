@@ -130,6 +130,7 @@ PROCESS_GROUPS = {
     # --------------------------------------------------------
     "data": [
         "Merged_H_era_data_nodup_py_hist.root",
+        "Merged_C_era_data_nodup_py_hist.root",
     ],
 }
 
