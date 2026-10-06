@@ -213,7 +213,7 @@ class StackPlotter:
         lumi.SetTextFont(42)
         lumi.SetTextSize(0.040)
         lumi.SetTextAlign(31)  # right align
-        lumi.DrawLatex(0.90, 0.92, "110 fb^{-1} (13.6 TeV)")
+        lumi.DrawLatex(0.90, 0.92, "13 fb^{-1} (13.6 TeV)")
 
         # Keep alive (VERY IMPORTANT in PyROOT)
         self._root_objs.extend([cms, prelim, lumi])
@@ -272,7 +272,7 @@ class StackPlotter:
         # =========================
         base = os.path.basename(self.root_file).replace(".root", "")
         out_png = os.path.join(PLOT_OUTPUT_DIR, base + ".png")
-        # out_png = os.path.join(PLOT_OUTPUT_DIR, base + ".pdf")
+        out_png = os.path.join(PLOT_OUTPUT_DIR, base + ".pdf")
 
         canvas.SaveAs(out_png)
         print("Saved →", out_png)

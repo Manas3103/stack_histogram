@@ -4,10 +4,10 @@ import ROOT
 # Input / Output directories
 # ============================================================
 
-INPUT_DIR = "2024_root_files"
-OUTPUT_DIR = "merged_branch_file_new"
+INPUT_DIR = "2024_root_files/for_tzq_Analysis"
+OUTPUT_DIR = "merged_branch_file_new/for_tzq_Analysis_merged"
 
-PLOT_OUTPUT_DIR = "merged_branch_file_new/plots"
+PLOT_OUTPUT_DIR = "merged_branch_file_new/for_tzq_Analysis_merged/plots"
 
 
 # ============================================================
