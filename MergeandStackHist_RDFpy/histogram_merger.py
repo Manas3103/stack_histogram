@@ -1,16 +1,27 @@
 import ROOT
+import importlib.util
 import os
 # from config_modified import INPUT_DIR, OUTPUT_DIR, PROCESS_GROUPS, PROCESS_GROUPS_FULL, HISTOGRAM_BRANCHES
-from config_modified import INPUT_DIR, OUTPUT_DIR, PROCESS_GROUPS, HISTOGRAM_BRANCHES
+
+def load_config(config_file):
+    if not config_file.endswith(".py"):
+        config_file += ".py"
+    spec = importlib.util.spec_from_file_location("user_config", config_file)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Cannot load config file: {config_file}")
+    cfg = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(cfg)
+    return cfg
 
 
 class HistogramMerger:
-    def __init__(self, partial_tag=False):
-        self.input_dir = INPUT_DIR
-        self.output_dir = OUTPUT_DIR
+    def __init__(self, config_file, partial_tag=False):
+        cfg = load_config(config_file)
+        self.input_dir = cfg.INPUT_DIR
+        self.output_dir = cfg.OUTPUT_DIR
         self.tag = partial_tag
-        self.hist_branches = HISTOGRAM_BRANCHES
-        self.groups = PROCESS_GROUPS if partial_tag else PROCESS_GROUPS_FULL
+        self.hist_branches = cfg.HISTOGRAM_BRANCHES
+        self.groups = cfg.PROCESS_GROUPS if partial_tag else PROCESS_GROUPS_FULL
         os.makedirs(self.output_dir, exist_ok=True)
 
     def _get_reference_file(self):

@@ -1,18 +1,42 @@
 import ROOT
 import os
-from config_modified import COLOR_MAP, MC_STACK_ORDER, PLOT_OUTPUT_DIR
+import argparse
+import importlib.util
+# from config_modified import COLOR_MAP, MC_STACK_ORDER, PLOT_OUTPUT_DIR
 
+def load_config(config_file):
+    """Load a Python config file dynamically."""
+    spec = importlib.util.spec_from_file_location("user_config", config_file)
+
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Cannot load config file: {config_file}")
+
+    config = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(config)
+
+    return config
 
 class StackPlotter:
-    def __init__(self, root_file):
+    def __init__(self, root_file, config_file, log=False):
         self.root_file = root_file
+        self.log = log
+
+        # Load the configuration file supplied by run_merge.py
+        config = load_config(config_file)
+
+
+        # Get configuration from the supplied config file
+        self.COLOR_MAP = config.COLOR_MAP
+        self.MC_STACK_ORDER = config.MC_STACK_ORDER
+        self.PLOT_OUTPUT_DIR = config.PLOT_OUTPUT_DIR
+
         self.data_hist = None
         self.mc_hists = []
 
         # Keep ROOT objects alive (CRITICAL in PyROOT)
         self._root_objs = []
 
-        os.makedirs(PLOT_OUTPUT_DIR, exist_ok=True)
+        os.makedirs(self.PLOT_OUTPUT_DIR, exist_ok=True)
 
     # ==========================================================
     # Load histograms safely
@@ -57,30 +81,29 @@ class StackPlotter:
         if len(self.mc_hists) == 0:
             raise RuntimeError("Missing MC histograms")
 
+    def _base_name(self, hist):
+        return hist.GetName().replace("_clone", "")
     # ==========================================================
     # Style MC
     # ==========================================================
     def style_mc(self):
         for hist in self.mc_hists:
-            for proc, color in COLOR_MAP.items():
-                if proc in hist.GetName():
-                    hist.SetFillColor(color)
-                    hist.SetLineColor(ROOT.kBlack)
-                    hist.SetLineWidth(1)
-
+            color = self.COLOR_MAP.get(self._base_name(hist))
+            if color is not None:
+                hist.SetFillColor(color)
+                hist.SetLineColor(ROOT.kBlack)
+                hist.SetLineWidth(1)
     # ==========================================================
     # Order MC
     # ==========================================================
     def order_mc(self):
         ordered = []
-        for proc in MC_STACK_ORDER:
+        for proc in self.MC_STACK_ORDER:
             for hist in self.mc_hists:
-                if proc in hist.GetName():
+                if self._base_name(hist) == proc:
                     ordered.append(hist)
-
         if ordered:
             self.mc_hists = ordered
-
     # ==========================================================
     # Build MC sum safely
     # ==========================================================
@@ -152,9 +175,15 @@ class StackPlotter:
         mc_sum = self.build_stack_sum()
         self._root_objs.append(mc_sum)
 
-        max_val = max(mc_sum.GetMaximum(), self.data_hist.GetMaximum()) * 1.40
-        stack.SetMaximum(max_val)
-        stack.SetMinimum(0)
+        max_val = max(mc_sum.GetMaximum(), self.data_hist.GetMaximum())
+
+        if self.log:
+            upper.SetLogy(True)
+            stack.SetMaximum(max_val * 100)   # headroom for legend / CMS text
+            stack.SetMinimum(0.1)             # must be > 0 on a log axis
+        else:
+            stack.SetMaximum(max_val * 1.40)
+            stack.SetMinimum(0)
 
         stack.GetYaxis().SetTitle("Events")
         stack.GetYaxis().SetTitleSize(0.05)
@@ -183,7 +212,7 @@ class StackPlotter:
         legend.AddEntry(self.data_hist, "Data", "lep")
 
         for h in reversed(self.mc_hists):
-            legend.AddEntry(h, h.GetName(), "f")
+            legend.AddEntry(h, self._base_name(h), "f")
 
         legend.AddEntry(unc_band, "MC stat unc.", "f")
         legend.Draw()
@@ -271,9 +300,9 @@ class StackPlotter:
         # Save
         # =========================
         base = os.path.basename(self.root_file).replace(".root", "")
-        out_png = os.path.join(PLOT_OUTPUT_DIR, base + ".png")
-        out_png = os.path.join(PLOT_OUTPUT_DIR, base + ".pdf")
-
+        # out_pdf = os.path.join(self.PLOT_OUTPUT_DIR, base + ".pdf")
+        suffix = "_log" if self.log else ""
+        out_png = os.path.join(self.PLOT_OUTPUT_DIR, base + suffix + ".png")
         canvas.SaveAs(out_png)
         print("Saved →", out_png)
 

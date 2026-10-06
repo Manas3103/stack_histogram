@@ -1,0 +1,4 @@
+#!/bin/sh
+rm hist_files.tar.gz
+scp msahoo@cmslpc-el9.fnal.gov:/eos/uscms/store/user/msahoo/for_FakeFactor/*gz .
+tar -xzvf hist_files.tar.gz
